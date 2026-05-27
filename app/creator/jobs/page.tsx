@@ -61,17 +61,15 @@ import { JOB_CATEGORIES, REGIONS, EMPLOYMENT_TYPES, EXPERIENCE_LEVELS } from "@/
 import type { Job } from "@/lib/types"
 
 const statusColors = {
-  active: "bg-green-500/10 text-green-700 border-green-200",
-  pending: "bg-yellow-500/10 text-yellow-700 border-yellow-200",
-  closed: "bg-gray-500/10 text-gray-700 border-gray-200",
-  rejected: "bg-red-500/10 text-red-700 border-red-200",
+  PUBLISHED: "bg-green-500/10 text-green-700 border-green-200",
+  DRAFT: "bg-yellow-500/10 text-yellow-700 border-yellow-200",
+  CLOSED: "bg-gray-500/10 text-gray-700 border-gray-200",
 }
 
 const statusIcons = {
-  active: CheckCircle2,
-  pending: Clock,
-  closed: XCircle,
-  rejected: XCircle,
+  PUBLISHED: CheckCircle2,
+  DRAFT: Clock,
+  CLOSED: XCircle,
 }
 
 export default function CreatorJobsPage() {
@@ -149,10 +147,9 @@ export default function CreatorJobsPage() {
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="all">All Status</SelectItem>
-                  <SelectItem value="active">Active</SelectItem>
-                  <SelectItem value="pending">Pending</SelectItem>
-                  <SelectItem value="closed">Closed</SelectItem>
-                  <SelectItem value="rejected">Rejected</SelectItem>
+                  <SelectItem value="PUBLISHED">Published</SelectItem>
+                  <SelectItem value="DRAFT">Draft</SelectItem>
+                  <SelectItem value="CLOSED">Closed</SelectItem>
                 </SelectContent>
               </Select>
               <Select value={categoryFilter} onValueChange={setCategoryFilter}>
@@ -180,19 +177,19 @@ export default function CreatorJobsPage() {
           </Card>
           <Card>
             <CardContent className="p-4">
-              <div className="text-2xl font-bold text-green-600">{jobs.filter(j => j.status === 'active').length}</div>
-              <p className="text-sm text-muted-foreground">Active</p>
+              <div className="text-2xl font-bold text-green-600">{jobs.filter(j => j.status === 'PUBLISHED').length}</div>
+              <p className="text-sm text-muted-foreground">Published</p>
             </CardContent>
           </Card>
           <Card>
             <CardContent className="p-4">
-              <div className="text-2xl font-bold text-yellow-600">{jobs.filter(j => j.status === 'pending').length}</div>
-              <p className="text-sm text-muted-foreground">Pending</p>
+              <div className="text-2xl font-bold text-yellow-600">{jobs.filter(j => j.status === 'DRAFT').length}</div>
+              <p className="text-sm text-muted-foreground">Draft</p>
             </CardContent>
           </Card>
           <Card>
             <CardContent className="p-4">
-              <div className="text-2xl font-bold text-gray-600">{jobs.filter(j => j.status === 'closed').length}</div>
+              <div className="text-2xl font-bold text-gray-600">{jobs.filter(j => j.status === 'CLOSED').length}</div>
               <p className="text-sm text-muted-foreground">Closed</p>
             </CardContent>
           </Card>
@@ -277,20 +274,20 @@ export default function CreatorJobsPage() {
                                 Edit
                               </DropdownMenuItem>
                               <DropdownMenuSeparator />
-                              {job.status === 'pending' && (
+                              {job.status === 'DRAFT' && (
                                 <>
-                                  <DropdownMenuItem onClick={() => handleStatusChange(job.id, 'active')}>
+                                  <DropdownMenuItem onClick={() => handleStatusChange(job.id, 'PUBLISHED')}>
                                     <CheckCircle2 className="h-4 w-4 mr-2 text-green-600" />
-                                    Approve
+                                    Publish
                                   </DropdownMenuItem>
-                                  <DropdownMenuItem onClick={() => handleStatusChange(job.id, 'rejected')}>
+                                  <DropdownMenuItem onClick={() => handleStatusChange(job.id, 'CLOSED')}>
                                     <XCircle className="h-4 w-4 mr-2 text-red-600" />
-                                    Reject
+                                    Close
                                   </DropdownMenuItem>
                                 </>
                               )}
-                              {job.status === 'active' && (
-                                <DropdownMenuItem onClick={() => handleStatusChange(job.id, 'closed')}>
+                              {job.status === 'PUBLISHED' && (
+                                <DropdownMenuItem onClick={() => handleStatusChange(job.id, 'CLOSED')}>
                                   <XCircle className="h-4 w-4 mr-2" />
                                   Close Job
                                 </DropdownMenuItem>

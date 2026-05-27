@@ -191,26 +191,26 @@ export default function CreatorDashboardPage() {
           <Card>
             <CardHeader className="pb-2">
               <div className="flex items-center justify-between">
-                <CardTitle className="text-base">Pending Jobs</CardTitle>
+                <CardTitle className="text-base">Draft Jobs</CardTitle>
                 <Badge variant="secondary">
-                  {mockJobs.filter(j => j.status === 'pending').length}
+                  {mockJobs.filter(j => j.status === 'DRAFT').length}
                 </Badge>
               </div>
             </CardHeader>
             <CardContent>
               <div className="space-y-2">
-                {mockJobs.filter(j => j.status === 'pending').slice(0, 3).map((job) => (
+                {mockJobs.filter(j => j.status === 'DRAFT').slice(0, 3).map((job) => (
                   <div key={job.id} className="flex items-center justify-between p-2 rounded-lg bg-muted/50">
                     <span className="text-sm truncate flex-1">{job.title}</span>
                     <Badge variant="outline" className="ml-2 text-yellow-600 border-yellow-600">
                       <AlertCircle className="h-3 w-3 mr-1" />
-                      Pending
+                      Draft
                     </Badge>
                   </div>
                 ))}
               </div>
-              <Link href="/creator/jobs?status=pending">
-                <Button variant="link" className="px-0 mt-2">Review all pending jobs</Button>
+              <Link href="/creator/jobs?status=DRAFT">
+                <Button variant="link" className="px-0 mt-2">Review all draft jobs</Button>
               </Link>
             </CardContent>
           </Card>
@@ -247,13 +247,13 @@ export default function CreatorDashboardPage() {
               <div className="flex items-center justify-between">
                 <CardTitle className="text-base">New Applications</CardTitle>
                 <Badge variant="secondary">
-                  {mockApplications.filter(a => a.status === 'pending').length}
+                  {mockApplications.filter(a => a.status === 'SUBMITTED').length}
                 </Badge>
               </div>
             </CardHeader>
             <CardContent>
               <div className="space-y-2">
-                {mockApplications.filter(a => a.status === 'pending').slice(0, 3).map((app) => (
+                {mockApplications.filter(a => a.status === 'SUBMITTED').slice(0, 3).map((app) => (
                   <div key={app.id} className="flex items-center justify-between p-2 rounded-lg bg-muted/50">
                     <span className="text-sm truncate flex-1">Application #{app.id}</span>
                     <Badge variant="outline" className="ml-2 text-blue-600 border-blue-600">
