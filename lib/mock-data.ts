@@ -1,4 +1,4 @@
-import type { Job, EmployerProfile, JobCategory } from './types'
+import type { Job, EmployerProfile, JobCategory, JobApplication } from './types'
 
 // Mock Job Categories with counts
 export const mockCategories: JobCategory[] = [
@@ -335,5 +335,59 @@ export const mockJobs: Job[] = [
     createdAt: new Date('2024-01-06'),
     updatedAt: new Date('2024-01-06'),
     applicationsCount: 41,
+  },
+]
+
+export const mockSeekers = [
+  {
+    id: 'seeker-1',
+    firstName: 'Ahmed',
+    lastName: 'Al-Farsi',
+    email: 'ahmed.alfarsi@example.com',
+    createdAt: '2024-01-03',
+    isActive: true,
+  },
+  {
+    id: 'seeker-2',
+    firstName: 'Layla',
+    lastName: 'Khalid',
+    email: 'layla.khalid@example.com',
+    createdAt: '2024-01-05',
+    isActive: true,
+  },
+  {
+    id: 'seeker-3',
+    firstName: 'Omar',
+    lastName: 'Hassan',
+    email: 'omar.hassan@example.com',
+    createdAt: '2024-01-07',
+    isActive: false,
+  },
+]
+
+export const mockApplications: JobApplication[] = [
+  {
+    id: 'app-1',
+    jobId: '1',
+    seekerId: 'seeker-1',
+    status: 'SUBMITTED',
+    createdAt: new Date('2024-01-20'),
+    updatedAt: new Date('2024-01-20'),
+  },
+  {
+    id: 'app-2',
+    jobId: '2',
+    seekerId: 'seeker-2',
+    status: 'VIEWED',
+    createdAt: new Date('2024-01-18'),
+    updatedAt: new Date('2024-01-19'),
+  },
+  {
+    id: 'app-3',
+    jobId: '3',
+    seekerId: 'seeker-3',
+    status: 'SUBMITTED',
+    createdAt: new Date('2024-01-16'),
+    updatedAt: new Date('2024-01-16'),
   },
 ]
